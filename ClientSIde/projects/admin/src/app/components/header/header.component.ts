@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.isAdminLogged)
     this.GetAdmin();
   }
   GetAdmin() {

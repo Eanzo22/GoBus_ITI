@@ -6,7 +6,8 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -20,16 +21,17 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status == 401) {
+        if (error.status === 401) {
           this.toaster.error('Not Authorized');
           this.router.navigate(['/login']);
           localStorage.removeItem('token');
-        } else if (error.status == 0) {
-          this.toaster.error('server is not working');
+          sessionStorage.removeItem('token');
+        } else if (error.status === 0) {
+          this.toaster.error('Server is not working');
         } else {
-          this.toaster.error(error.error.messages);
+          this.toaster.error(error.error.messages || 'An error occurred');
         }
-        throw error;
+        return throwError(error);
       })
     );
   }
