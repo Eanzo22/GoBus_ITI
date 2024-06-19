@@ -1,4 +1,5 @@
 
+using DAL;
 using DAL.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,12 +12,18 @@ namespace GoBusAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            //get the connection string 
             var constr = builder.Configuration.GetConnectionString("constr");
 
+            // add data base configration
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(constr);
             });
+
+            // register the services from the different projects 
+            builder.Services.RegisterDALMethod();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
