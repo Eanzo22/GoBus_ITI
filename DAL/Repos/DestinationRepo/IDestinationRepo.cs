@@ -10,9 +10,7 @@ namespace DAL.Repos.DestinationRepo
 {
     public interface IDestinationRepo: IGenericRepo<Destination>
     {
-        public interface IDestinationRepo : IGenericRepo<Destination>
-        {
-            Task<IEnumerable<Destination>?> GetAllWithBranchesDetailsAsync();
-        }
+        Task<IEnumerable<Destination>?> GetAllWithBranchesDetailsAsync();
+
     }
 }

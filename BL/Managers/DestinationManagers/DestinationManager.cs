@@ -1,4 +1,5 @@
 ﻿using BL.Dtos.DestinationDtos;
+using BL.Dtos.EndBranchDtos;
 using DAL.Data.Models;
 using DAL.UnitOfWorks;
 using System;
@@ -69,19 +70,61 @@ namespace BL.Managers.DestinationManagers
             return _unitOfWork.Response(false, null, "There is no Destinations");
         }
 
-        public Task<Response> GetAllWithBranchesDetailsAsync()
+        public async Task<Response> GetAllWithBranchesDetailsAsync()
         {
-            throw new NotImplementedException();
+            IEnumerable<Destination>? destinations = await _unitOfWork.DestinationRepo.GetAllWithBranchesDetailsAsync();
+            if (destinations is not null)
+            {
+                var data = destinations.Select(x => new DestinationWithBranchesDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Branches = x.EndBranchs.Select(y => new EndBranchReadDto
+                    {
+                        Id = y.Id,
+                        Name = y.Name,
+                        Address = y.Address,
+                        Phone = y.Phone
+                    }),
+                });
+                return _unitOfWork.Response(true, data, null);
+
+            }
+
+            return _unitOfWork.Response(false, null, "There is no Destinations");
         }
 
-        public Task<Response> GetByIdAsync(int id)
+        public async Task<Response> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            Destination? destinations = await _unitOfWork.DestinationRepo.GetByIdAsync(id);
+            if (destinations is not null)
+            {
+                var data = new DestinationReadDto
+                {
+                    Id = destinations.Id,
+                    Name = destinations.Name,
+                    ImageURL = destinations.ImageURL,
+                };
+                return _unitOfWork.Response(true, data, null);
+            }
+
+            return _unitOfWork.Response(false, null, $"Destination with id ({id}) is not found");
         }
 
-        public Task<Response> UpdateAsync(int id, DestinationAddDto destinationUpdateDto)
+        public async Task<Response> UpdateAsync(int id, DestinationAddDto destinationUpdateDto)
         {
-            throw new NotImplementedException();
+            Destination? destination = await _unitOfWork.DestinationRepo.GetByIdAsync(id);
+            if (destination is not null)
+            {
+                destination.Name = destinationUpdateDto.Name;
+                destination.ImageURL = destinationUpdateDto.ImageURL;
+            }
+            bool result = await _unitOfWork.SaveChangesAsync() > 0;
+            if (result)
+            {
+                return _unitOfWork.Response(true, null, "The Destination has been updated successfully");
+            }
+            return _unitOfWork.Response(false, null, "Failed to update Destination");
         }
     }
 }

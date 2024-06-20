@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Dtos.EndBranchDtos
+namespace BL.Dtos.StartBranchDto
 {
-    public class EndBranchAddDto
+    public class StartBranchAddDto
     {
         public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
