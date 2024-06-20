@@ -2,6 +2,7 @@
 using DAL.Data.Models;
 using DAL.Repos.DestinationRepo;
 using DAL.Repos.EndBranchRepo;
+using DAL.Repos.PublicActivityRepos;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TripRepo;
 using System;
@@ -21,6 +22,8 @@ namespace DAL.UnitOfWorks
         public IStartBranchRepo StartBranchRepo { get; }
 
         public ITripRepo TripRepo { get; }
+        public IPublicActivityRepo PublicActivityRepo { get; }
+
 
         public AppDbContext AppDbContext { get; }
 
@@ -29,13 +32,17 @@ namespace DAL.UnitOfWorks
             IDestinationRepo destinationRepo,
             IEndBranchRepo endBranchRepo,
             IStartBranchRepo startBranchRepo,
-            ITripRepo tripRepo)
+            ITripRepo tripRepo,
+            IPublicActivityRepo publicActivityRepo
+            )
         {
             AppDbContext = appDbContext;
             StartBranchRepo = startBranchRepo;
             EndBranchRepo = endBranchRepo;
             DestinationRepo = destinationRepo;
             TripRepo = tripRepo;
+            PublicActivityRepo = publicActivityRepo;
+
 
         }
         public Response Response(bool success, object? data, object? messages)

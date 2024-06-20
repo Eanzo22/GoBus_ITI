@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Repos.PublicActivityRepos;
 
 namespace DAL.UnitOfWorks
 {
@@ -18,6 +19,8 @@ namespace DAL.UnitOfWorks
         public IEndBranchRepo EndBranchRepo { get; }
         public IStartBranchRepo StartBranchRepo { get; }
         public ITripRepo TripRepo { get; }
+        public IPublicActivityRepo PublicActivityRepo { get; }
+
         Task<int> SaveChangesAsync();
         Response Response(bool success, object? data, object? messages);
 

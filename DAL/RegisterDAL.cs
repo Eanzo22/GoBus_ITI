@@ -1,5 +1,6 @@
 ﻿using DAL.Repos.DestinationRepo;
 using DAL.Repos.EndBranchRepo;
+using DAL.Repos.PublicActivityRepos;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TripRepo;
 using DAL.UnitOfWorks;
@@ -22,6 +23,7 @@ namespace DAL
             service.AddScoped<IStartBranchRepo, StartBranchRepo>();
             service.AddScoped<ITripRepo, TripRepo>();
             service.AddScoped<IUnitOfWork , UnitOfWork>();
+            service.AddScoped<IPublicActivityRepo, PublicActivityRepo>();
         }
     }
 }

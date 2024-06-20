@@ -17,6 +17,7 @@ namespace DAL.Data.Context
 
         public DbSet<Trip> Trips => Set<Trip>();
 
+        public DbSet<PublicActivity> PublicActivities => Set<PublicActivity>();
 
         public AppDbContext()
         {
