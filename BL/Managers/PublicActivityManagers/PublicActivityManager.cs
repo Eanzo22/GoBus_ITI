@@ -1,15 +1,15 @@
 ﻿using BL.Dtos.PublicActivityDtos;
-using DAL.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Data.Models;
+using DAL.UnitOfWork;
 
 namespace BL.Managers.PublicActivityManagers
 {
-    public class PublicActivityManager
+    public class PublicActivityManager : IPublicActivityManager
     {
         private readonly IUnitOfWork _unitOfWork;
 

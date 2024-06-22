@@ -1,7 +1,7 @@
 ﻿using BL.Dtos.DestinationDtos;
 using BL.Dtos.EndBranchDtos;
 using DAL.Data.Models;
-using DAL.UnitOfWorks;
+using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,3 +1,8 @@
+using DAL;
+using BL;
+using DAL.Data.Context;
+using DAL.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoBusAPI
 {
@@ -9,11 +14,11 @@ namespace GoBusAPI
 
             // Add services to the container.
             #region Repos
-            builder.Services.AddScoped<IQuestionRepo, QuestionRepo>();
+            builder.Services.RegisterDALMethod();
             #endregion
 
             #region Managers
-            builder.Services.AddScoped<IQuestionManager, QuestionManager>();
+            builder.Services.RegisterBLMethod();
             #endregion
 
             #region UnitOfWork
@@ -30,17 +35,9 @@ namespace GoBusAPI
             });
             #endregion
 
-            //get the connection string 
-            var constr = builder.Configuration.GetConnectionString("constr");
+            
 
-            // add data base configration
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(constr);
-            });
-
-            // register the services from the different projects 
-            builder.Services.RegisterDALMethod();
+            
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
