@@ -5,45 +5,45 @@ using DAL.Repos.EndBranchRepo;
 using DAL.Repos.PublicActivityRepos;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TripRepo;
+using DAL.Repos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.UnitOfWorks
+namespace DAL.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IDestinationRepo DestinationRepo { get; }
 
+        public IDestinationRepo DestinationRepo { get; }
         public IEndBranchRepo EndBranchRepo { get; }
+
+        public IPublicActivityRepo PublicActivityRepo { get; }
+        public IQuestionRepo QuestionRepo { get; }
 
         public IStartBranchRepo StartBranchRepo { get; }
 
         public ITripRepo TripRepo { get; }
-        public IPublicActivityRepo PublicActivityRepo { get; }
-
 
         public AppDbContext AppDbContext { get; }
 
-            
-        public UnitOfWork(AppDbContext appDbContext,
+        public UnitOfWork(AppDbContext appDbContext,          
             IDestinationRepo destinationRepo,
-            IEndBranchRepo endBranchRepo,
-            IStartBranchRepo startBranchRepo,
-            ITripRepo tripRepo,
-            IPublicActivityRepo publicActivityRepo
-            )
+            IEndBranchRepo endBranchRepo,          
+            IPublicActivityRepo publicActivityRepo,
+            IQuestionRepo questionRepo,      
+            IStartBranchRepo startBranchRepo,     
+            ITripRepo tripRepo)
         {
-            AppDbContext = appDbContext;
-            StartBranchRepo = startBranchRepo;
-            EndBranchRepo = endBranchRepo;
+            AppDbContext = appDbContext;          
             DestinationRepo = destinationRepo;
-            TripRepo = tripRepo;
+            EndBranchRepo = endBranchRepo;     
             PublicActivityRepo = publicActivityRepo;
-
-
+            QuestionRepo = questionRepo; 
+            StartBranchRepo = startBranchRepo;           
+            TripRepo = tripRepo;
         }
         public Response Response(bool success, object? data, object? messages)
         {
