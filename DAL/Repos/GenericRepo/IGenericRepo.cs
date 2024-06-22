@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repos.Generic_Repo
 {
     public interface IGenericRepo<Entity> where Entity : class
     {

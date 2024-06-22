@@ -4,6 +4,7 @@ using DAL.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240619202714_initMigration")]
+    partial class initMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,6 +25,7 @@ namespace DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DAL.Data.Models.Destination", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,55 +33,102 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.HasKey("Id");
 
+                    b.ToTable("Destinations", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            ImageURL = "https://lp-cms-production.imgix.net/news/2019/02/Cairo-market.jpg",
+                            Name = "Cairo"
                         },
                         new
                         {
                             Id = 2,
+                            ImageURL = "https://go-bus.com:8181/wp-content/uploads/2019/04/Sharm-hero.jpg",
+                            Name = "Red Sea"
                         },
                         new
                         {
                             Id = 3,
+                            ImageURL = "https://go-bus.com:8181/wp-content/uploads/2019/04/sokhna-hero-1.jpg",
+                            Name = "South Sinai"
                         },
                         new
                         {
                             Id = 4,
+                            ImageURL = "https://go-bus.com:8181/wp-content/uploads/2018/05/Alex-hero.jpg",
+                            Name = "Alexandria"
                         },
                         new
                         {
                             Id = 5,
+                            ImageURL = "https://www.carolsbeaurivage.com/medias/slide/big/5/img-9257.jpg",
+                            Name = "North Coast"
                         },
                         new
                         {
                             Id = 6,
+                            ImageURL = "https://planetofhotels.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Suez.jpg",
+                            Name = "Suez"
                         },
                         new
                         {
                             Id = 7,
+                            ImageURL = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/7d/c0/f6/qena.jpg?w=500&h=300&s=1",
+                            Name = "Qena"
                         },
                         new
                         {
                             Id = 8,
+                            ImageURL = "https://media.odyfolio.com/pho/145/uae-uae-al-gharbia-liwa-desert-qasr-al-sarab-hotel_m-1-169.jpeg",
+                            Name = "Gharbia"
                         },
                         new
                         {
                             Id = 9,
+                            ImageURL = "https://cdn.britannica.com/10/126710-050-8E814ED9/building-Suez-Canal-Authority-Port-Said-Egypt.jpg",
+                            Name = "Port Said"
                         },
                         new
                         {
                             Id = 10,
+                            ImageURL = "https://upload.wikimedia.org/wikipedia/commons/4/4d/AsyutUniversityMainBldg.jpg",
+                            Name = "Assiut"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImageURL = "https://facts.net/wp-content/uploads/2023/07/40-facts-about-menia-1689735034.jpeg",
+                            Name = "Menia"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImageURL = "https://www.introducingegypt.com/f/egipto/egipto/guia/luxor-m.jpg",
+                            Name = "Luxor"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImageURL = "https://t3.ftcdn.net/jpg/03/63/61/66/360_F_363616600_zenx3HVCXEVDAYhBYhYglFYU9xTRYKMO.jpg",
+                            Name = "Dakahlia"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImageURL = "https://mercure.accor.com/local-stories/media/ismailia_desk.jpg",
+                            Name = "Ismailia"
                         });
                 });
 

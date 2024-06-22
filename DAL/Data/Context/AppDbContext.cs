@@ -11,8 +11,10 @@ namespace DAL.Data.Context
 {
     public class AppDbContext: DbContext
     {
-        public DbSet<Question> Questions => Set<Question> ();
- 
+
+        public DbSet<Trip> Trips => Set<Trip>();
+
+        public DbSet<PublicActivity> PublicActivities => Set<PublicActivity>();
 
         public AppDbContext()
         {
