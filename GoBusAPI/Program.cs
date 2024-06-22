@@ -8,7 +8,6 @@ using BL.Managers.ApplicationUserRoleManagers;
 using BL.Managers.PaymentManagers;
 using BL.Managers.PolicyManagers;
 using BL.Managers.ReservationManagers;
-using DAL.Data.Context;
 using DAL.Data.Models;
 using DAL.Repos.ApplicationRoleRepo;
 using DAL.Repos.ApplicationUserRepo;
@@ -18,7 +17,6 @@ using DAL.Repos.ReservationRepo;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
@@ -31,19 +29,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
-            //get the connection string 
-            var constr = builder.Configuration.GetConnectionString("constr");
-
-            // add data base configration
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(constr);
-            });
-
-            // register the services from the different projects 
-            builder.Services.RegisterDALMethod();
+        // register the services from the different projects 
+        builder.Services.RegisterDALMethod();
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
