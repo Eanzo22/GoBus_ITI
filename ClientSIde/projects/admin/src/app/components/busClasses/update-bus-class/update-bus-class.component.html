@@ -57,9 +57,15 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12">
-      <input type="file" id="imageURL" (change)="SelectImage($event)" />
+    <div class="row mt-3">
+      <div class="col-md-12">
+          <label>Upload Images :</label>
+          <input id="image" type="file" (change)="SelectImage($event)" multiple />
+      </div>
     </div>
+    <!-- <div class="col-md-12">
+      <input type="file" id="imageURL" (change)="SelectImage($event)" />
+    </div> -->
   </form>
 
   <footer class="tw-p-6">

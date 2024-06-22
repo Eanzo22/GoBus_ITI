@@ -13,7 +13,7 @@ import { IResponse } from '../../../models/iresponse';
 })
 export class UpdateBusClassComponent {
   busClassForm: FormGroup;
-  selectedFile!: File;
+  selectedFiles: File[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -31,17 +31,20 @@ export class UpdateBusClassComponent {
   ngOnInit(): void {}
 
   SelectImage(event: any) {
-    this.selectedFile = event.target.files[0];
+    this.selectedFiles = Array.from(event.target.files);
   }
 
   Update() {
     let formData = new FormData();
+    console.log(JSON.stringify(this.data.classImageURLs))
+    let stringifiedImageUrls=JSON.stringify(this.data.classImageURLs);
+    formData.append('imageURLs',stringifiedImageUrls)
 
     formData.append('name', this.name?.value);
     formData.append('averagePrice', this.averagePrice?.value);
-    formData.append('file', this.selectedFile);
-    console.log(this.imageURL?.value)
-    formData.append('imageURL',this.imageURL?.value[2])
+    this.selectedFiles.forEach(file =>{
+      formData.append('file', file);
+    })
     this.busClassService.UpdateBusClass(this.data.id, formData).subscribe({
       next: (v) => {
         let response = v as IResponse;
