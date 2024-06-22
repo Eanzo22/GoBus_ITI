@@ -7,6 +7,7 @@ import { AddDestinationComponent } from '../add-destination/add-destination.comp
 import { DestinationDetailsComponent } from '../destination-details/destination-details.component';
 import { UpdateDestinationComponent } from '../update-destination/update-destination.component';
 import { DeleteDestinationComponent } from '../delete-destination/delete-destination.component';
+import { IDestination } from 'projects/user/src/app/models/idestination';
 
 @Component({
   selector: 'app-all-destinations',
@@ -76,10 +77,10 @@ export class AllDestinationsComponent implements OnInit {
     });
   }
 
-  DeleteDestination(destinationId: number) {
+  DeleteDestination(destination: IDestination) {
     const dialogRef = this.dialog.open(DeleteDestinationComponent, {
       width: '750px',
-      data: destinationId,
+      data: destination,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

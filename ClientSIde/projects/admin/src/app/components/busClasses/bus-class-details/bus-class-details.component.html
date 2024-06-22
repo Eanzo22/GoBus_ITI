@@ -50,14 +50,20 @@
 
     <div class="row mt-3">
       <div class="col-md-12 image">
-        <img [src]="classImageURLs?.value[0]" alt="">
+        <div class="slideshow-container">
+          <div *ngFor="let imageUrl of classImageURLs?.value; let i = index" class="mySlides" [ngStyle]="{'display': i === currentImageIndex ? 'block' : 'none'}">
+            <img [src]="imageUrl" alt="" class="slide-image">
+          </div>
+          <a class="prev" (click)="changeSlide(-1)">&#10094;</a>
+          <a class="next" (click)="changeSlide(1)">&#10095;</a>
+        </div>
       </div>
     </div>
   </form>
 
   <footer class="tw-p-6">
     <div class="d-flex justify-content-center align-items-center">
-      <div mat-flat-button matDialogClose class="btn btn-danger py-1 px-5">
+      <div mat-flat-button matDialogClose class="btn btn-danger py-1 px-5 mt-3">
         <button>Close</button>
       </div>
     </div>

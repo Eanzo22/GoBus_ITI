@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -130,11 +131,16 @@ export class AddDriverComponent implements OnInit {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword ) {
       form.get('confirmPassword')?.setErrors({ mismatch: true });
-    } else {
+    }
+     else {
       form.get('confirmPassword')?.setErrors(null);
     }
+    // if (password && confirmPassword) {
+    //   return password !== confirmPassword ? { mismatch: true } : null;
+    // }
+    // return null;
   }
 
   GetAllUserNames() {
@@ -176,7 +182,7 @@ export class AddDriverComponent implements OnInit {
   }
 
   get password() {
-    return this.driverRegisterForm.get('password');
+    return this.driverRegisterForm.get('password') as FormControl;
   }
 
   get confirmPassword() {

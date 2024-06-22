@@ -66,6 +66,7 @@ export class UpdatePublicActivityComponent {
     formData.append('description', this.description?.value);
     formData.append('destinationID', this.destinationId?.value);
     formData.append('file', this.selectedFile);
+    formData.append('imageURL', this.imageURL?.value);
 
     this.publicActivityService
       .UpdatePublicActivity(this.data.id, formData)

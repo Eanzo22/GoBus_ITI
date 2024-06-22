@@ -108,10 +108,10 @@ export class AllPublicActivitiesComponent implements OnInit {
     });
   }
 
-  DeletePublicActivity(publicActivityId: number) {
+  DeletePublicActivity(publicActivity: IPublicActivityRead) {
     const dialogRef = this.dialog.open(DeletePublicActivityComponent, {
       width: '750px',
-      data: publicActivityId,
+      data: publicActivity,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

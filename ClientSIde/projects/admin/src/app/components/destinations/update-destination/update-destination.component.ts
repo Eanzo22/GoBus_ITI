@@ -14,7 +14,6 @@ import { IResponse } from '../../../models/iresponse';
 export class UpdateDestinationComponent {
   destinationForm: FormGroup;
   selectedFile!: File;
-
   constructor(
     private fb: FormBuilder,
     private destinationService: DestinationService,
@@ -40,7 +39,13 @@ export class UpdateDestinationComponent {
     let formData = new FormData();
 
     formData.append('name', this.name?.value);
-    formData.append('file', this.selectedFile);
+    console.log(this.selectedFile)
+    if (this.selectedFile) {
+      formData.append('file', this.selectedFile);
+    } else {
+    console.log(this.imageURL?.value)
+      formData.append('imageURL', this.imageURL?.value);
+    }
 
     this.destinationService
       .UpdateDestination(this.data.id, formData)

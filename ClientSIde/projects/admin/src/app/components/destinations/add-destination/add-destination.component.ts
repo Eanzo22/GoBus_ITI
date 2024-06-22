@@ -21,7 +21,7 @@ export class AddDestinationComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.destinationForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-z_ ]{3,}')]],
+      name: ['', [Validators.required, Validators.pattern("[a-zA-z',_ ]{3,}")]],
     });
   }
   ngOnInit(): void {}

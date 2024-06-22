@@ -40,7 +40,8 @@ export class UpdateBusClassComponent {
     formData.append('name', this.name?.value);
     formData.append('averagePrice', this.averagePrice?.value);
     formData.append('file', this.selectedFile);
-
+    console.log(this.imageURL?.value)
+    formData.append('imageURL',this.imageURL?.value[2])
     this.busClassService.UpdateBusClass(this.data.id, formData).subscribe({
       next: (v) => {
         let response = v as IResponse;

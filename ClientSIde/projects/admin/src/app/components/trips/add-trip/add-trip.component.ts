@@ -56,6 +56,10 @@ export class AddTripComponent implements OnInit {
   Add() {
     let trip: ITripAdd = this.tripForm.value;
 
+    console.log(trip)
+    trip.departureDate = this.dPipe.transform(trip.departureDate, 'yyyy-MM-ddTHH:mm:ss') as any;
+    trip.arrivalDate = this.dPipe.transform(trip.arrivalDate, 'yyyy-MM-ddTHH:mm:ss') as any;
+  
     this.tripService.Addtrip(trip).subscribe({
       next: (v) => {
         let response = v as IResponse;

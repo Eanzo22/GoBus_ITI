@@ -1,12 +1,13 @@
-<div class="main p-4">
+<div  class="main p-4">
   <header class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0">Add Admin</h1>
+    <h1 class="m-0 text-center w-100">Add Admin</h1>
     <span mat-flat-button matDialogClose class="text-danger">
       <mat-icon>close</mat-icon>
     </span>
   </header>
+
   <form [formGroup]="adminRegisterForm">
-    <div class="mb-3">
+      <div class="mb-3">
       <label for="firstName" class="form-label">FirstName</label>
       <input
         type="text"
@@ -103,10 +104,10 @@
     <div class="mb-3">
       <label for="phoneNumber" class="form-label">Phone No.</label>
       <input
-        type="text"
-        formControlName="phoneNumber"
-        class="form-control"
-        id="phoneNumber"
+      type="text"
+      formControlName="phoneNumber"
+      class="form-control"
+      id="phoneNumber"
         name="phoneNumber"
         pattern="[0-9]{11}"
         [class.is-invalid]="phoneNumber?.invalid && phoneNumber?.touched"
@@ -131,16 +132,17 @@
         class="form-control"
         id="password"
         name="password"
-        [class.is-invalid]="password?.invalid && password?.touched"
-        [class.is-valid]="password?.valid && password?.touched"
+        [class.is-invalid]="password.invalid && password.touched"
+        [class.is-valid]="password.valid && password.touched"
       />
-      <div [hidden]="password?.valid || password?.untouched">
+      <div [hidden]="password.valid || password.untouched">
         <small *ngIf="password?.errors?.['required']">
           * Password is required.
         </small>
         <small *ngIf="password?.errors?.['pattern']">
-          * Please provide a valid Password.
+          Password must contain :-
         </small>
+        <app-password-requirements  *ngIf="password?.errors?.['pattern']" [passwordControl]="password"></app-password-requirements>
       </div>
     </div>
 
@@ -163,23 +165,30 @@
         </small>
         <small *ngIf="confirmPassword?.errors?.['mismatch']">
           * Password doesn't match</small
-        >
+          >
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
 
 
-  <footer class="tw-p-6">
-    <div class="d-flex justify-content-center align-items-center">
-      <div mat-flat-button class="btn btn-success py-1 px-5 mx-2">
-        <button [disabled]="adminRegisterForm.invalid " (click)="Add()">
+    <footer class="tw-p-6">
+      <div class="d-flex justify-content-center align-items-center">
+        <div mat-flat-button class="btn btn-success py-1 px-5 mx-2">
+          <button [disabled]="adminRegisterForm.invalid " (click)="Add()">
           Create
         </button>
       </div>
-
       <div mat-flat-button matDialogClose class="btn btn-danger py-1 px-5">
         <button>Close</button>
       </div>
     </div>
   </footer>
 </div>
+
+  <!--
+    <mat-dialog-actions>
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <button class="btn btn-danger py-1 px-5" mat-button (click)="onCancel()">Cancel</button>
+          <button class="btn btn-success py-1 px-5 mx-2" mat-button (click)="Add()" [disabled]="adminRegisterForm.invalid">Submit</button>
+        </div>
+  </mat-dialog-actions> -->

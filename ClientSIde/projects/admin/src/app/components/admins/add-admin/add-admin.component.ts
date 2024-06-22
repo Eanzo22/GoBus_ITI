@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IResponse } from '../../../models/iresponse';
 import { AdminService } from '../../../services/admin/admin.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -21,7 +21,6 @@ export class AddAdminComponent implements OnInit {
     private fb: FormBuilder,
     private adminService: AdminService,
     private dialog: MatDialogRef<AddAdminComponent>,
-
     private toaster: ToastrService,
   ) {
     this.adminRegisterForm = fb.group(
@@ -75,6 +74,9 @@ export class AddAdminComponent implements OnInit {
     this.GetAllEmails();
   }
 
+  onCancel(): void {
+    this.dialog.close();
+  }
   Add() {
     let adminRegister: IUserRead = this.adminRegisterForm.value;
 
@@ -167,7 +169,7 @@ export class AddAdminComponent implements OnInit {
   }
 
   get password() {
-    return this.adminRegisterForm.get('password');
+    return this.adminRegisterForm.get('password') as FormControl;
   }
 
   get confirmPassword() {

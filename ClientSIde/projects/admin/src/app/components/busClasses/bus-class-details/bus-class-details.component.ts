@@ -9,6 +9,8 @@ import { IBusClassDetails } from '../../../models/busClass/ibus-class-details';
   styleUrls: ['./bus-class-details.component.scss'],
 })
 export class BusClassDetailsComponent implements OnInit {
+  currentImageIndex: number = 0;
+
   busClassForm: FormGroup;
 
   constructor(
@@ -19,9 +21,17 @@ export class BusClassDetailsComponent implements OnInit {
     this.busClassForm = this.fb.group({
       name: [data?.name || ''],
       averagePrice: [data?.averagePrice || ''],
-      busesNumbers: [data?.busesNumbers || ''],
-      classImageURLs: [data?.classImageURLs || ''],
+      busesNumbers: [data?.busesNumbers || []],
+      classImageURLs: [data?.classImageURLs || []],
     });
+  }
+  changeSlide(direction: number) {
+    this.currentImageIndex += direction;
+    if (this.currentImageIndex >= this.data.classImageURLs.length) {
+      this.currentImageIndex = 0;
+    } else if (this.currentImageIndex < 0) {
+      this.currentImageIndex = this.data.classImageURLs.length - 1;
+    }
   }
   ngOnInit(): void {}
 

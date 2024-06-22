@@ -91,6 +91,8 @@ import { AdminDetailsComponent } from './components/admins/admin-details/admin-d
 import { AllAdminsComponent } from './components/admins/all-admins/all-admins.component';
 import { BlockUserComponent } from './components/users/block-user/block-user.component';
 import { LoginComponent } from './components/login/login.component';
+import { PasswordRequirementsComponent } from './password-requirements/password-requirements.component';
+import { MatList, MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -151,9 +153,11 @@ import { LoginComponent } from './components/login/login.component';
     AllAdminsComponent,
     BlockUserComponent,
     LoginComponent,
+    PasswordRequirementsComponent,
   ],
   imports: [
     BrowserModule,
+    MatListModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

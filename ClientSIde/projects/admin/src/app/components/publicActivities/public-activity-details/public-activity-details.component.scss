@@ -1,7 +1,10 @@
 h1 {
   font-weight: bold;
 }
-
+.main{
+  max-height: 100vh;
+  overflow-y: auto;
+}
 textarea {
   min-height: 200px;
 }

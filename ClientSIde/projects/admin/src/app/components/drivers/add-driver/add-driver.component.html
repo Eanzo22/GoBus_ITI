@@ -131,16 +131,17 @@
         class="form-control"
         id="password"
         name="password"
-        [class.is-invalid]="password?.invalid && password?.touched"
-        [class.is-valid]="password?.valid && password?.touched"
+        [class.is-invalid]="password.invalid && password.touched"
+        [class.is-valid]="password.valid && password.touched"
       />
-      <div [hidden]="password?.valid || password?.untouched">
+      <div *ngIf="password.invalid && (password.touched || password.dirty)">
         <small *ngIf="password?.errors?.['required']">
           * Password is required.
         </small>
         <small *ngIf="password?.errors?.['pattern']">
-          * Please provide a valid Password.
+          Password must contain :-
         </small>
+        <app-password-requirements  *ngIf="password?.errors?.['pattern']" [passwordControl]="password"></app-password-requirements>
       </div>
     </div>
 
@@ -157,13 +158,12 @@
         "
         [class.is-valid]="confirmPassword?.valid && confirmPassword?.touched"
       />
-      <div [hidden]="confirmPassword?.valid || confirmPassword?.untouched">
+      <div *ngIf="confirmPassword?.invalid && (confirmPassword?.touched || confirmPassword?.dirty)">
         <small *ngIf="confirmPassword?.errors?.['required']">
           * Confirm Password is required.
         </small>
         <small *ngIf="confirmPassword?.errors?.['mismatch']">
-          * Password doesn't match</small
-        >
+          * Password doesn't match</small>
       </div>
     </div>
   </form>

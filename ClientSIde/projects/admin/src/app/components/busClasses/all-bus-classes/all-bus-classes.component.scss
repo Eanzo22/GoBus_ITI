@@ -1,4 +1,6 @@
 .main {
+  max-height:100vh;
+  overflow-y:auto;
   .top {
     display: flex;
     justify-content: space-between;
