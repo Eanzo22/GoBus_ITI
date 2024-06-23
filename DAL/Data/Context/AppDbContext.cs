@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,12 +13,14 @@ namespace DAL.Data.Context
     {
         public DbSet<Destination> Destinations => Set<Destination>();
 
-        public DbSet<StartBranch> StartBranches => Set<StartBranch>();
         public DbSet<EndBranch> EndBranches => Set<EndBranch>();
 
-        public DbSet<Trip> Trips => Set<Trip>();
+        public DbSet<StartBranch> StartBranches => Set<StartBranch>();
+
+         public DbSet<Trip> Trips => Set<Trip>();
 
         public DbSet<PublicActivity> PublicActivities => Set<PublicActivity>();
+        public DbSet<Question> Questions => Set<Question>();
 
         public AppDbContext()
         {
@@ -33,5 +36,6 @@ namespace DAL.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
+
     }
 }
