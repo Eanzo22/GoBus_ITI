@@ -1,4 +1,8 @@
 ﻿using BL.Dtos.ApplicationUserDtos;
+using BL.Dtos.BusDtos;
+using BL.Dtos.ReportDtos;
+using BL.Dtos.ReservationDtos;
+using BL.Dtos.TripsDtos;
 using DAL.Data.Models;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;

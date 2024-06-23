@@ -1,4 +1,7 @@
-﻿namespace BL.Dtos.ApplicationUserDtos;
+﻿using BL.Dtos.ReportDtos;
+using BL.Dtos.ReservationDtos;
+
+namespace BL.Dtos.ApplicationUserDtos;
 
 public class UserWithDetailsDto
 {

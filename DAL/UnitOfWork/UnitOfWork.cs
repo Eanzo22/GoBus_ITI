@@ -11,6 +11,11 @@ using DAL.Repos.ReservationRepo;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TripRepo;
 using DAL.Repos;
+using DAL.Repos.TermRepo;
+using DAL.Repos.TicketRepo;
+using DAL.Repos.BusClassRepo;
+using DAL.Repos.BusRepo;
+using DAL.Repos.ClassImageRepo;
 
 namespace DAL.UnitOfWork;
 
@@ -27,6 +32,11 @@ public class UnitOfWork : IUnitOfWork
     public IPolicyRepo PolicyRepo { get; }
     public IReservationRepo ReservationRepo { get; }
     public IQuestionRepo QuestionRepo { get; }
+    public ITermRepo TermRepo { get; }
+    public ITicketRepo TicketRepo { get; }
+    public IBusClassRepo BusClassRepo { get; }
+    public IBusRepo BusRepo { get; }
+    public IClassImageRepo ClassImageRepo { get; }
     public AppDbContext AppDbContext { get; }
 
 
@@ -41,7 +51,12 @@ public class UnitOfWork : IUnitOfWork
         IApplicationUserRoleRepo applicationUserRoleRepo,
         IPolicyRepo policyRepo,
         IReservationRepo reservationRepo,
-        IQuestionRepo questionRepo,)
+        IQuestionRepo questionRepo,
+        ITermRepo termRepo,
+        ITicketRepo ticketRepo,
+        IBusClassRepo busClassRepo,
+        IBusRepo busRepo,
+        IClassImageRepo classImageRepo)
     {
         AppDbContext = appDbContext;
         StartBranchRepo = startBranchRepo;
@@ -55,7 +70,11 @@ public class UnitOfWork : IUnitOfWork
         PolicyRepo = policyRepo;
         ReservationRepo = reservationRepo;
         QuestionRepo = questionRepo;
-
+        TermRepo = termRepo;
+        TicketRepo = ticketRepo;
+        BusClassRepo = busClassRepo;
+        BusRepo = busRepo;
+        ClassImageRepo = classImageRepo;
     }
     public Response Response(bool success, object? data, object? messages)
     {

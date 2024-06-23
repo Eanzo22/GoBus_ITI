@@ -198,7 +198,7 @@ public class ReservationManager : IReservationManager
 
         bool result = await _unitOfWork.SaveChangesAsync() > 0;
 
-        Trip? trip = await _unitOfWork.TripRepo.GetByIdAsync(reservation.TripId);
+        Trip? trip = await _unitOfWork.TripRepo.GetByIdWithBusClassNameAsync(reservation.TripId);
 
         if (trip is not null)
         {

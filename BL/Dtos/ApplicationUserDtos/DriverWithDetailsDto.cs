@@ -1,4 +1,6 @@
-﻿namespace BL.Dtos.ApplicationUserDtos;
+﻿using BL.Dtos.BusDtos;
+
+namespace BL.Dtos.ApplicationUserDtos;
 
 public class DriverWithDetailsDto
 {

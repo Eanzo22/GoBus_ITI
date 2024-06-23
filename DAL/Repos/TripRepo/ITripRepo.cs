@@ -9,6 +9,8 @@ namespace DAL.Repos.TripRepo
 {
     public interface ITripRepo
     {
+        Task<IEnumerable<Trip>?> SearchAsync();
+        Task<Trip?> GetByIdWithBusClassNameAsync(int id);
         Task<IEnumerable<Trip>?> GetAllWithDetailsAsync();
     }
 }

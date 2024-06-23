@@ -3,41 +3,55 @@ using BL;
 using DAL.Data.Context;
 using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using DAL.Repos.ApplicationRoleRepo;
+using DAL.Repos.ApplicationUserRepo;
+using DAL.Repos.ApplicationUserRoleRepo;
+using DAL.Repos.PolicyRepo;
+using DAL.Repos.ReservationRepo;
+using BL.Managers.ApplicationUserManagers;
+using BL.Managers.ApplicationRoleManagers;
+using BL.Managers.ApplicationUserRoleManagers;
+using BL.Managers.PolicyManagers;
+using BL.Managers.ReservationManagers;
+using BL.Managers.PaymentManagers;
+using DAL.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Claims;
+using DAL.Repos.BusClassRepo;
+using DAL.Repos.BusRepo;
+using DAL.Repos.ClassImageRepo;
+using DAL.Repos.TermRepo;
+using DAL.Repos.TicketRepo;
+using BL.Managers.BusClassManagers;
+using BL.Managers.BusManagers;
+using BL.Managers.ClassImageManagers;
+using BL.Managers.TermManagers;
+using BL.Managers.TicketManagers;
 
 namespace GoBusAPI;
 
-    public class Program
+public class Program
+{
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            #region Repos
-            builder.Services.RegisterDALMethod();
-            #endregion
+        // Add services to the container.
+        #region Repos
+        builder.Services.RegisterDALMethod();
+        #endregion
 
-            #region Managers
-            builder.Services.RegisterBLMethod();
-            #endregion
+        #region Managers
+        builder.Services.RegisterBLMethod();
+        #endregion
 
-            #region UnitOfWork
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            #endregion
+        #region UnitOfWork
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+        #endregion
 
-
-            #region Database
-            var constr = builder.Configuration.GetConnectionString("constr");
-
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(constr);
-            });
-            #endregion
-
-            
-
-            
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -50,6 +64,11 @@ namespace GoBusAPI;
         builder.Services.AddScoped<IApplicationUserRoleRepo, ApplicationUserRoleRepo>();
         builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
         builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
+        builder.Services.AddScoped<IBusClassRepo, BusClassRepo>();
+        builder.Services.AddScoped<IBusRepo, BusRepo>();
+        builder.Services.AddScoped<IClassImageRepo, ClassImageRepo>();
+        builder.Services.AddScoped<ITermRepo, TermRepo>();
+        builder.Services.AddScoped<ITicketRepo, TicketRepo>();
         #endregion
 
         #region Managers
@@ -59,6 +78,11 @@ namespace GoBusAPI;
         builder.Services.AddScoped<IPolicyManager, PolicyManager>();
         builder.Services.AddScoped<IReservationManager, ReservationManager>();
         builder.Services.AddScoped<IPaymentManager, PaymentManager>();
+        builder.Services.AddScoped<IBusClassManager, BusClassManager>();
+        builder.Services.AddScoped<IBusManager, BusManager>();
+        builder.Services.AddScoped<IClassImageManager, ClassImageManager>();
+        builder.Services.AddScoped<ITermManager, TermManager>();
+        builder.Services.AddScoped<ITicketManager, TicketManager>();
         #endregion
 
         #region UnitOfWork
