@@ -1,6 +1,6 @@
 ﻿using BL.Dtos.TripsDtos;
 using DAL.Data.Models;
-using DAL.UnitOfWorks;
+using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;

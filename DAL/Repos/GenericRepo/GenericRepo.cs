@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos.GenericRepo
 {
-    public class GenericRepo<Entity> : IGenericRepo<Entity> where Entity : class
-    {
+   public class GenericRepo<Entity> : IGenericRepo<Entity> where Entity : class
+
+   {
         private readonly AppDbContext _appDbContext;
 
         public GenericRepo(AppDbContext appDbContext)
@@ -36,5 +37,7 @@ namespace DAL.Repos.GenericRepo
         {
             _appDbContext.Remove(entity);
         }
+
+
     }
 }

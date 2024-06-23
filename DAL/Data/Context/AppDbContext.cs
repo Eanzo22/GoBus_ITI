@@ -8,12 +8,14 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
 {
             public DbSet<Destination> Destinations => Set<Destination>();
 
-        public DbSet<StartBranch> StartBranches => Set<StartBranch>();
         public DbSet<EndBranch> EndBranches => Set<EndBranch>();
 
-        public DbSet<Trip> Trips => Set<Trip>();
+        public DbSet<StartBranch> StartBranches => Set<StartBranch>();
+
+         public DbSet<Trip> Trips => Set<Trip>();
 
         public DbSet<PublicActivity> PublicActivities => Set<PublicActivity>();
+        public DbSet<Question> Questions => Set<Question>();
 
     public AppDbContext()
     {

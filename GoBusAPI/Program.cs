@@ -1,36 +1,43 @@
-
 using DAL;
+using BL;
 using DAL.Data.Context;
-using Microsoft.EntityFrameworkCore;
-using BL.Managers.ApplicationRoleManagers;
-using BL.Managers.ApplicationUserManagers;
-using BL.Managers.ApplicationUserRoleManagers;
-using BL.Managers.PaymentManagers;
-using BL.Managers.PolicyManagers;
-using BL.Managers.ReservationManagers;
-using DAL.Data.Models;
-using DAL.Repos.ApplicationRoleRepo;
-using DAL.Repos.ApplicationUserRepo;
-using DAL.Repos.ApplicationUserRoleRepo;
-using DAL.Repos.PolicyRepo;
-using DAL.Repos.ReservationRepo;
 using DAL.UnitOfWork;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoBusAPI;
 
-public class Program
-{
-    public static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-        // register the services from the different projects 
-        builder.Services.RegisterDALMethod();
+            // Add services to the container.
+            #region Repos
+            builder.Services.RegisterDALMethod();
+            #endregion
+
+            #region Managers
+            builder.Services.RegisterBLMethod();
+            #endregion
+
+            #region UnitOfWork
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            #endregion
+
+
+            #region Database
+            var constr = builder.Configuration.GetConnectionString("constr");
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(constr);
+            });
+            #endregion
+
+            
+
+            
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

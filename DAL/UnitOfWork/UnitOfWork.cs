@@ -10,6 +10,7 @@ using DAL.Repos.PublicActivityRepos;
 using DAL.Repos.ReservationRepo;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TripRepo;
+using DAL.Repos;
 
 namespace DAL.UnitOfWork;
 
@@ -25,6 +26,7 @@ public class UnitOfWork : IUnitOfWork
     public IApplicationUserRoleRepo ApplicationUserRoleRepo { get; }
     public IPolicyRepo PolicyRepo { get; }
     public IReservationRepo ReservationRepo { get; }
+    public IQuestionRepo QuestionRepo { get; }
     public AppDbContext AppDbContext { get; }
 
 
@@ -38,7 +40,8 @@ public class UnitOfWork : IUnitOfWork
         IApplicationUserRepo applicationUserRepo,
         IApplicationUserRoleRepo applicationUserRoleRepo,
         IPolicyRepo policyRepo,
-        IReservationRepo reservationRepo)
+        IReservationRepo reservationRepo,
+        IQuestionRepo questionRepo,)
     {
         AppDbContext = appDbContext;
         StartBranchRepo = startBranchRepo;
@@ -51,7 +54,7 @@ public class UnitOfWork : IUnitOfWork
         ApplicationUserRoleRepo = applicationUserRoleRepo;
         PolicyRepo = policyRepo;
         ReservationRepo = reservationRepo;
-
+        QuestionRepo = questionRepo;
 
     }
     public Response Response(bool success, object? data, object? messages)

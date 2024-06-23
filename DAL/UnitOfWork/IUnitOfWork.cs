@@ -4,6 +4,8 @@ using DAL.Repos.TripRepo;
 using DAL.Repos.DestinationRepo;
 using DAL.Data.Models;
 using DAL.Repos.PublicActivityRepos;
+using DAL.Repos;
+
 using DAL.Repos.ApplicationRoleRepo;
 using DAL.Repos.ApplicationUserRepo;
 using DAL.Repos.ApplicationUserRoleRepo;
@@ -24,6 +26,8 @@ public interface IUnitOfWork
     public IStartBranchRepo StartBranchRepo { get; }
     public ITripRepo TripRepo { get; }
     public IPublicActivityRepo PublicActivityRepo { get; }
+    public IQuestionRepo QuestionRepo { get; }
+
 
     Task<int> SaveChangesAsync();
     Response Response(bool success, object? data, object? messages);
