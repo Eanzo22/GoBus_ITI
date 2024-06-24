@@ -568,7 +568,7 @@ public class ApplicationUserManager : IApplicationUserManager
         {
             var roles = await _userManager.GetRolesAsync(user);
             bool found = await _userManager.CheckPasswordAsync(user, loginDto.Password);
-            if (found && roles.Contains(loginDto.Role))
+            if (found && roles.Any(role => role.Equals(loginDto.Role.Trim(), StringComparison.OrdinalIgnoreCase)))
             {
                 var claims = new List<Claim>
                 {

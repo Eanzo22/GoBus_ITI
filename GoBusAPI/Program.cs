@@ -30,6 +30,7 @@ using BL.Managers.BusManagers;
 using BL.Managers.ClassImageManagers;
 using BL.Managers.TermManagers;
 using BL.Managers.TicketManagers;
+using Hangfire;
 
 namespace GoBusAPI;
 
@@ -40,6 +41,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+
         #region Repos
         builder.Services.RegisterDALMethod();
         #endregion
@@ -95,6 +97,14 @@ public class Program
         {
             options.UseSqlServer(constr);
         });
+        #endregion
+
+        #region Hangfire
+        builder.Services.AddHangfire(config =>
+        {
+            config.UseSqlServerStorage(builder.Configuration.GetConnectionString("constr"));
+        });
+        builder.Services.AddHangfireServer();
         #endregion
 
         #region Identity

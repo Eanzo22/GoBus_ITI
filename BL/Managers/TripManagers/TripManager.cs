@@ -6,15 +6,16 @@ using Hangfire;
 
 namespace BL.Managers.TripManagers;
 
-public class TripManager : ITripManager     
+public class TripManager : ITripManager
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IBackgroundJobClient _backgroundJobClient;
 
-    public TripManager(IUnitOfWork unitOfWork)
+    public TripManager(IUnitOfWork unitOfWork, IBackgroundJobClient backgroundJobClient)
     {
         _unitOfWork = unitOfWork;
+        _backgroundJobClient = backgroundJobClient;
     }
-
 
     #region SearchAsync
     public async Task<Response> SearchAsync(TripSearchDto tripSearchDto)
@@ -52,7 +53,6 @@ public class TripManager : ITripManager
         return _unitOfWork.Response(false, null, "There is no Trips");
     }
     #endregion
-
 
     #region FilterByDateAsync
     public async Task<Response> FilterByDateAsync(DateOnly date)
@@ -96,9 +96,7 @@ public class TripManager : ITripManager
 
         return _unitOfWork.Response(false, null, "There is no Trips");
     }
-
     #endregion
-
 
     #region GetAllWithDetailsAsync
     public async Task<Response> GetAllWithDetailsAsync()
@@ -139,7 +137,6 @@ public class TripManager : ITripManager
     }
     #endregion
 
-
     #region GetByIdWithBusClassNameAsync
     public async Task<Response> GetByIdWithBusClassNameAsync(int id)
     {
@@ -149,7 +146,6 @@ public class TripManager : ITripManager
         {
             var data = new TripUserDto
             {
-
                 Id = trip.Id,
                 AvailableSeats = trip.AvailableSeats,
                 DepartureDate = trip.DepartureDate,
@@ -166,7 +162,6 @@ public class TripManager : ITripManager
         return _unitOfWork.Response(false, null, $"Trip is not found");
     }
     #endregion
-
 
     #region AddAsync
     public async Task<Response> AddAsync(TripAddDto tripAddDto)
@@ -190,8 +185,8 @@ public class TripManager : ITripManager
             {
                 tripDb.AvailableSeats = tripDb.Bus.Capacity;
 
-                BackgroundJob.Schedule(() => BusStatus1(tripDb.BusId, tripDb.EndBranch.Name.ToString()), trip.DepartureDate);
-                BackgroundJob.Schedule(() => BusStatus2(tripDb.BusId, tripDb.EndBranch.Name.ToString()), trip.ArrivalDate);
+                _backgroundJobClient.Schedule(() => BusStatus1(tripDb.BusId, tripDb.EndBranch.Name), trip.DepartureDate);
+                _backgroundJobClient.Schedule(() => BusStatus2(tripDb.BusId, tripDb.EndBranch.Name), trip.ArrivalDate);
 
                 bool hangFireHandling = await _unitOfWork.SaveChangesAsync() > 0;
                 if (hangFireHandling)
@@ -221,7 +216,6 @@ public class TripManager : ITripManager
         await _unitOfWork.SaveChangesAsync();
     }
     #endregion
-
 
     #region UpdateAsync
     public async Task<Response> UpdateAsync(int id, TripUpdateDto tripUpdateDto)
@@ -257,7 +251,6 @@ public class TripManager : ITripManager
     }
     #endregion
 
-
     #region DeleteAsync
     public async Task<Response> DeleteAsync(int id)
     {
@@ -276,5 +269,4 @@ public class TripManager : ITripManager
         return _unitOfWork.Response(false, null, $"Trip is not found");
     }
     #endregion
-
 }
