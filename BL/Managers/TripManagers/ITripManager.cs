@@ -16,7 +16,7 @@ namespace BL.Managers.TripManagers
         Task<Response> GetAllWithDetailsAsync();
         Task<Response> GetByIdWithBusClassNameAsync(int id);
         Task<Response> AddAsync(TripAddDto tripAddDto);
-        Task<Response> UpdateAsync(int id, TripAddDto tripUpdateDto);
+        Task<Response> UpdateAsync(int id, TripUpdateDto tripUpdateDto);
         Task<Response> DeleteAsync(int id);
     }
 }

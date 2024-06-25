@@ -1,0 +1,49 @@
+﻿using DAL.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace DAL.Data.Configurations;
+
+public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
+{
+    public void Configure(EntityTypeBuilder<Reservation> builder)
+    {
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Quantity)
+           .HasColumnType("int")
+           .IsRequired();
+
+        builder.Property(x => x.Price)
+           .HasColumnType("decimal")
+           .IsRequired();
+
+        builder.Property(x => x.TotalPrice)
+           .HasColumnType("decimal")
+           .IsRequired();
+
+        builder.Property(x => x.Date)
+           .HasColumnType("datetime");
+
+        builder.Property(x => x.ClientSecret)
+           .HasColumnType("varchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.PaymentIntentId)
+           .HasColumnType("varchar(max)")
+           .IsRequired();
+
+        builder.HasOne(x => x.User)
+            .WithMany(x => x.Reservations)
+            .HasForeignKey(x => x.UserId)
+            .IsRequired();
+
+        builder.HasOne(x => x.Trip)
+            .WithMany(x => x.Reservations)
+            .HasForeignKey(x => x.TripId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .IsRequired();
+
+        builder.ToTable("Reservations");
+    }
+}

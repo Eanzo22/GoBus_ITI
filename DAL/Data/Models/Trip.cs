@@ -18,9 +18,7 @@ namespace DAL.Data.Models
         public StartBranch StartBranch { get; set; } = null!;
         public int EndBranchId { get; set; }
         public EndBranch EndBranch { get; set; } = null!;
-
-        // todo -- add this 
-        //public Bus Bus { get; set; } = null!;
-        //public IEnumerable<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public Bus Bus { get; set; } = null!;
+        public IEnumerable<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }
