@@ -31,6 +31,7 @@ using BL.Managers.ClassImageManagers;
 using BL.Managers.TermManagers;
 using BL.Managers.TicketManagers;
 using Hangfire;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace GoBusAPI;
 
@@ -162,6 +163,26 @@ public class Program
 
         #endregion
 
+        #region Files Service
+        builder.Services.Configure<FormOptions>(options =>
+        {
+            options.MultipartBodyLengthLimit = long.MaxValue;
+        });
+        #endregion
+
+
+        #region CORS Policy
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllDomains", policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+        });
+        #endregion
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -171,8 +192,10 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseHangfireDashboard();
         app.UseHttpsRedirection();
-
+        app.UseCors("AllowAllDomains");
+        app.UseStaticFiles();
         app.UseAuthentication();
         app.UseAuthorization();
 
