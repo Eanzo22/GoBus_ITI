@@ -24,6 +24,7 @@ public class TripManager : ITripManager
 
         if (trips is not null)
         {
+
             IEnumerable<Trip>? filteredTrips = trips
             .Where(x => x.AvailableSeats >= tripSearchDto.Quantity)
             .Where(x => DateOnly.FromDateTime(x.DepartureDate) == DateOnly.Parse(tripSearchDto.DepartureDate))

@@ -5,6 +5,17 @@ using BL.Managers.TripManagers;
 using BL.Managers.StartBranchManagers;
 using BL.Managers.PublicActivityManagers;
 using BL.Managers.QuestionManager;
+using BL.Managers.ApplicationRoleManagers;
+using BL.Managers.ApplicationUserManagers;
+using BL.Managers.ApplicationUserRoleManagers;
+using BL.Managers.BusClassManagers;
+using BL.Managers.BusManagers;
+using BL.Managers.ClassImageManagers;
+using BL.Managers.PaymentManagers;
+using BL.Managers.PolicyManagers;
+using BL.Managers.ReservationManagers;
+using BL.Managers.TermManagers;
+using BL.Managers.TicketManagers;
 
 
 namespace BL;
@@ -19,6 +30,17 @@ public static class RegisterBL
         service.AddScoped<ITripManager, TripManager>();
         service.AddScoped<IPublicActivityManager, PublicActivityManager>();
         service.AddScoped<IQuestionManager, QuestionManager>();
+        service.AddScoped<IApplicationUserManager, ApplicationUserManager>();
+        service.AddScoped<IApplicationRoleManager, ApplicationRoleManager>();
+        service.AddScoped<IApplicationUserRoleManager, ApplicationUserRoleManager>();
+        service.AddScoped<IPolicyManager, PolicyManager>();
+        service.AddScoped<IReservationManager, ReservationManager>();
+        service.AddScoped<IPaymentManager, PaymentManager>();
+        service.AddScoped<IBusClassManager, BusClassManager>();
+        service.AddScoped<IBusManager, BusManager>();
+        service.AddScoped<IClassImageManager, ClassImageManager>();
+        service.AddScoped<ITermManager, TermManager>();
+        service.AddScoped<ITicketManager, TicketManager>();
 
     }
 }

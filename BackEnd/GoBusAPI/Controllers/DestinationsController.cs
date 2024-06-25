@@ -134,42 +134,43 @@ namespace GoBusAPI.Controllers
         #region UpdateAsync
         [HttpPut("{id:int}")]
         //[Authorize(Policy = "ForAdmin")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromForm] IFormFile file, [FromForm] string name)
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromForm] string name, [FromForm] string imageURL, [FromForm] IFormFile? file = null)
         {
-            if (file == null || file.Length == 0)
+            string newImageUrl;
+            if (file != null && file.Length > 0)
             {
-                return BadRequest("Invalid file");
-            }
+                string folderPath;
 
-            string folderPath;
+                if (!Directory.Exists(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images")))
+                {
+                    folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+                }
+                else
+                {
+                    Directory.CreateDirectory(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images"));
+                    folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+                }
 
-            if (!Directory.Exists(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images")))
-            {
-                folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                string filePath = Path.Combine(folderPath, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                newImageUrl = "https://localhost:44331/Images/" + uniqueFileName;
             }
             else
             {
-                Directory.CreateDirectory(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images"));
-                folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+                newImageUrl = imageURL; // Use the existing image URL if no new file is uploaded
             }
-
-
-            string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-            string filePath = Path.Combine(folderPath, uniqueFileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            var newImageUrl = "https://localhost:44331/Images/" + uniqueFileName;
 
             var destinationUpdateDto = new DestinationAddDto
             {
                 Name = name,
                 ImageURL = newImageUrl
             };
-
 
             Response response = await _destinationManager.UpdateAsync(id, destinationUpdateDto);
 
@@ -179,7 +180,6 @@ namespace GoBusAPI.Controllers
             }
 
             return BadRequest(response);
-
         }
         #endregion
 

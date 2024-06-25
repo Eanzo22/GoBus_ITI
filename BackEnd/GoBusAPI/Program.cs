@@ -61,32 +61,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        #region Repo Services
-        builder.Services.AddScoped<IApplicationRoleRepo, ApplicationRoleRepo>();
-        builder.Services.AddScoped<IApplicationUserRepo, ApplicationUserRepo>();
-        builder.Services.AddScoped<IApplicationUserRoleRepo, ApplicationUserRoleRepo>();
-        builder.Services.AddScoped<IPolicyRepo, PolicyRepo>();
-        builder.Services.AddScoped<IReservationRepo, ReservationRepo>();
-        builder.Services.AddScoped<IBusClassRepo, BusClassRepo>();
-        builder.Services.AddScoped<IBusRepo, BusRepo>();
-        builder.Services.AddScoped<IClassImageRepo, ClassImageRepo>();
-        builder.Services.AddScoped<ITermRepo, TermRepo>();
-        builder.Services.AddScoped<ITicketRepo, TicketRepo>();
-        #endregion
 
-        #region Managers
-        builder.Services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
-        builder.Services.AddScoped<IApplicationRoleManager, ApplicationRoleManager>();
-        builder.Services.AddScoped<IApplicationUserRoleManager, ApplicationUserRoleManager>();
-        builder.Services.AddScoped<IPolicyManager, PolicyManager>();
-        builder.Services.AddScoped<IReservationManager, ReservationManager>();
-        builder.Services.AddScoped<IPaymentManager, PaymentManager>();
-        builder.Services.AddScoped<IBusClassManager, BusClassManager>();
-        builder.Services.AddScoped<IBusManager, BusManager>();
-        builder.Services.AddScoped<IClassImageManager, ClassImageManager>();
-        builder.Services.AddScoped<ITermManager, TermManager>();
-        builder.Services.AddScoped<ITicketManager, TicketManager>();
-        #endregion
 
         #region UnitOfWork
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

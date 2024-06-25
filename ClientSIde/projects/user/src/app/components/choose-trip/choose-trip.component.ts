@@ -41,7 +41,7 @@ export class ChooseTripComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.filterTrip.quantity = Number(paramMap.get('quantity'));
     });
-
+    console.log(this.filterTrip)
     this.router.events.subscribe((event) => {
       this.FilterTrips(this.filterTrip);
     });
@@ -57,12 +57,13 @@ export class ChooseTripComponent implements OnInit {
         let response = v as IResponse;
         this.trips = response.data;
       },
-      // error: (e) => console.log(e),
-      // complete: () => console.log('complete'),
+      error: (e) => console.log(e),
+      complete: () => console.log(this.trips),
     });
   }
 
   ChooseTrip(tripId: number) {
+    console.log(tripId)
     this.router.navigate(['/reservation/', tripId, this.filterTrip.quantity]);
   }
 

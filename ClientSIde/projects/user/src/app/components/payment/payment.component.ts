@@ -54,7 +54,7 @@ export class PaymentComponent implements OnInit {
   }
   ngOnInit(): void {
     loadStripe(
-      'pk_test_51OBNBaKrHuXxznHQOijLNC9bQQHZ98W6I7a7yzww3WIAT4PYB69LJvrdESaiXHv6Gv9RBGtH09AkEWLoVNNGNUBn00tgYPcrbR'
+      'pk_test_51PRfICJ20nhRdHtzgmZVdb84jEhhzoxxzx3fIXx0nYgtyzlMIL4Ik1fbmMwSbstriu7bF9Asf1Ft0926NQpDP7gJ00naDUOgWx'
     ).then((stripe: any) => {
       this.stripe = stripe;
       const elements = stripe.elements();
