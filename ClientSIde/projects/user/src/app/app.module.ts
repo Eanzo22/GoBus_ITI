@@ -55,6 +55,7 @@ import {
 import { ReservationSuccessComponent } from './components/reservation-success/reservation-success.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ReservationHistoryComponent } from './components/reservation-history/reservation-history.component';
+import { PasswordRequirementsComponent } from './components/password-requirements/password-requirements.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { ReservationHistoryComponent } from './components/reservation-history/re
     ReservationSuccessComponent,
     ForgetPasswordComponent,
     ReservationHistoryComponent,
+    PasswordRequirementsComponent
   ],
   imports: [
     BrowserModule,
