@@ -46,6 +46,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
   MatNativeDateModule,
@@ -107,6 +108,7 @@ import { ReservationHistoryComponent } from './components/reservation-history/re
     MatSortModule,
     MatTableModule,
     MatMenuModule,
+    MatFormFieldModule,
   ],
   providers: [
     DatePipe,

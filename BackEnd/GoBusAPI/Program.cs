@@ -32,6 +32,7 @@ using BL.Managers.TermManagers;
 using BL.Managers.TicketManagers;
 using Hangfire;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GoBusAPI;
 
@@ -61,7 +62,11 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-
+        // Ensure web root path is set
+        if (string.IsNullOrEmpty(builder.Environment.WebRootPath))
+        {
+            builder.Environment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        }
 
         #region UnitOfWork
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

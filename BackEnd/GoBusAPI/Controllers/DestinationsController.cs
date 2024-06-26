@@ -20,7 +20,7 @@ namespace GoBusAPI.Controllers
         public DestinationsController(IDestinationManager destinationManager, IWebHostEnvironment webHostEnvironment)
         {
             _destinationManager = destinationManager;
-            _webHostEnvironment = webHostEnvironment;
+            _webHostEnvironment = webHostEnvironment ?? throw new ArgumentNullException(nameof(webHostEnvironment));
         }
 
         // user 
@@ -76,7 +76,7 @@ namespace GoBusAPI.Controllers
 
         #region AddAsync
         [HttpPost]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> AddAsync([FromForm] IFormFile file, [FromForm] string name)
         {
 
@@ -86,19 +86,14 @@ namespace GoBusAPI.Controllers
                 return BadRequest("Invalid file");
             }
 
-            string folderPath;
-
+            string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
             // creat the upload directory if not exists 
-            if (!Directory.Exists(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images")))
-            {
-                folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
-            }
-            else
-            {
-                Directory.CreateDirectory(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images"));
-                folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
-            }
 
+            
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
             // uploade the image 
 
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
@@ -108,7 +103,7 @@ namespace GoBusAPI.Controllers
             {
                 await file.CopyToAsync(stream);
             }
-            var imageUrl = "https://localhost:44331/Images/" + uniqueFileName;
+            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
 
 
             // creat the destination object 
@@ -131,24 +126,25 @@ namespace GoBusAPI.Controllers
         }
         #endregion
 
+
+
+
         #region UpdateAsync
         [HttpPut("{id:int}")]
-        //[Authorize(Policy = "ForAdmin")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromForm] string name, [FromForm] string imageURL, [FromForm] IFormFile? file = null)
+        [Authorize(Policy = "ForAdmin")]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromForm] string name, [FromForm] string imageURL, [FromForm] IFormFile? file)
         {
+           
             string newImageUrl;
             if (file != null && file.Length > 0)
             {
-                string folderPath;
+                string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+                // creat the upload directory if not exists 
 
-                if (!Directory.Exists(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images")))
+
+                if (!Directory.Exists(folderPath))
                 {
-                    folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
-                }
-                else
-                {
-                    Directory.CreateDirectory(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images"));
-                    folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+                    Directory.CreateDirectory(folderPath);
                 }
 
                 string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
@@ -159,7 +155,7 @@ namespace GoBusAPI.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                newImageUrl = "https://localhost:44331/Images/" + uniqueFileName;
+                newImageUrl = "https://localhost:7066/Images/" + uniqueFileName;
             }
             else
             {
@@ -185,7 +181,7 @@ namespace GoBusAPI.Controllers
 
         #region DeleteAsync
         [HttpDelete("{id:int}")]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             Response response = await _destinationManager.DeleteAsync(id);

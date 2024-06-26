@@ -26,7 +26,7 @@ namespace GoBusAPI.Controllers
 
         #region AddAsync
         [HttpPost]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> AddAsync
             (
             [FromForm] IFormFile file,
@@ -60,7 +60,7 @@ namespace GoBusAPI.Controllers
             {
                 await file.CopyToAsync(stream);
             }
-            var imageUrl = "https://localhost:44331/Images/" + uniqueFileName;
+            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
 
             var publicActivityAddDto = new PublicActivityAddDto
             {
@@ -86,7 +86,7 @@ namespace GoBusAPI.Controllers
 
         #region UpdateAsync
         [HttpPut("{id:int}")]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> UpdateAsync
             (
             [FromRoute] int id,
@@ -122,7 +122,7 @@ namespace GoBusAPI.Controllers
                 await file.CopyToAsync(stream);
             }
 
-            var imageUrl = "https://localhost:44331/Images/" + uniqueFileName;
+            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
 
             var publicActivityUpdateDto = new PublicActivityAddDto
             {

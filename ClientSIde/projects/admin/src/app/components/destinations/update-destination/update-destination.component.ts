@@ -38,14 +38,15 @@ export class UpdateDestinationComponent {
   Update() {
     let formData = new FormData();
 
-    formData.append('name', this.name?.value);
-    console.log(this.selectedFile)
+      formData.append('imageURL', this.imageURL?.value);
+      formData.append('name', this.name?.value);
+    // console.log(this.selectedFile)
     if (this.selectedFile) {
       formData.append('file', this.selectedFile);
-    } else {
-    console.log(this.imageURL?.value)
-      formData.append('imageURL', this.imageURL?.value);
     }
+    //  else {
+    // console.log(this.imageURL?.value)
+    // }
 
     this.destinationService
       .UpdateDestination(this.data.id, formData)
