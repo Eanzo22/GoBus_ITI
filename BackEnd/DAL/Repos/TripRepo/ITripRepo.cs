@@ -11,6 +11,7 @@ namespace DAL.Repos.TripRepo
     public interface ITripRepo : IGenericRepo<Trip>
     {
         Task<IEnumerable<Trip>?> SearchAsync();
+        Task<Trip?> GetByIdWithReservationsAsync(int id);
         Task<Trip?> GetByIdWithBusClassNameAsync(int id);
         Task<IEnumerable<Trip>?> GetAllWithDetailsAsync();
     }

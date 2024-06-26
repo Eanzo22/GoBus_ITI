@@ -73,5 +73,13 @@ namespace DAL.Repos.TripRepo
 
                 .ToListAsync();
         }
+        public async Task<Trip?> GetByIdWithReservationsAsync(int id)
+        {
+            return await _appDbContext.Trips
+                .Include(x => x.Reservations)
+                .FirstOrDefaultAsync(z => z.Id == id);
+
+        }
+
     }
 }

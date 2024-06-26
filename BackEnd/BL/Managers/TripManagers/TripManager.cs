@@ -255,10 +255,11 @@ public class TripManager : ITripManager
     #region DeleteAsync
     public async Task<Response> DeleteAsync(int id)
     {
-        Trip? trip = await _unitOfWork.TripRepo.GetByIdAsync(id);
+        Trip? trip = await _unitOfWork.TripRepo.GetByIdWithReservationsAsync(id);
 
-        if (trip is not null)
+        if (trip is not null && trip.Reservations is not null)
         {
+            
             _unitOfWork.TripRepo.Delete(trip);
             bool result = await _unitOfWork.SaveChangesAsync() > 0;
             if (result)
@@ -267,7 +268,7 @@ public class TripManager : ITripManager
             }
             return _unitOfWork.Response(false, null, "Failed to delete Trip");
         }
-        return _unitOfWork.Response(false, null, $"Trip is not found");
+        return _unitOfWork.Response(false, null, $"Trip is not found or Trip have already reservations");
     }
     #endregion
 }
