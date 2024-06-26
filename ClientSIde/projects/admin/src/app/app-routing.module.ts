@@ -13,7 +13,7 @@ import { AllUsersComponent } from './components/users/all-users/all-users.compon
 import { AllDriversComponent } from './components/drivers/all-drivers/all-drivers.component';
 import { AllAdminsComponent } from './components/admins/all-admins/all-admins.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from './gaurds/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'users', pathMatch: 'full' },

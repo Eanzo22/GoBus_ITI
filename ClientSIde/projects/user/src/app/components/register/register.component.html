@@ -136,6 +136,8 @@
         <small *ngIf="password?.errors?.['pattern']">
           * Please provide a valid Password.
         </small>
+        <app-password-requirements  *ngIf="password?.errors?.['pattern']" [passwordControl]="password"></app-password-requirements>
+      
       </div>
     </div>
 

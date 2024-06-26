@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (localStorage.getItem('token') || sessionStorage.getItem('token')) {
+      this.routService.navigate(['/users']);
       return true;
     }
     else {
@@ -22,5 +23,6 @@ export class AuthGuard implements CanActivate {
       this.routService.navigate(['/login']);
       return false;
     }
+    return false;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -172,7 +173,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get password() {
-    return this.userRegisterForm.get('password');
+    return this.userRegisterForm.get('password') as FormControl;
   }
 
   get confirmPassword() {
