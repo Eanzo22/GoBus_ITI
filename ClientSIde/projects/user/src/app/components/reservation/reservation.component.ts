@@ -19,7 +19,7 @@ import { PaymentService } from '../../services/payment/payment.service';
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.scss'],
+  styleUrls: ['./style1.scss','./style2.scss'],
 })
 export class ReservationComponent implements OnInit {
   trip: ITrip = {} as ITrip;
