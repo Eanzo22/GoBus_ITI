@@ -31,16 +31,16 @@
         class="form-control"
         id="password"
         name="password"
-        [class.is-invalid]="password?.touched"
-        [class.is-valid]="password?.touched"
+        [class.is-invalid]="password?.invalid && password?.touched"
+        [class.is-valid]="password?.valid && password?.touched"
       />
       <div [hidden]="password?.valid || password?.untouched">
         <small *ngIf="password?.errors?.['required']">
           * Password is required.
         </small>
-        <!-- <small *ngIf="password?.errors?.['pattern']">
+        <small *ngIf="password?.errors?.['pattern']">
           * Please provide a valid Password.
-        </small> -->
+        </small>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
     </button>
     <div class="d-flex justify-content-between">
       <div class="createAccount"><a routerLink="/register" routerLinkActive="active">Create Account</a></div>
-      <div class="forgetPass" (click)="forgetPass()">Forget Password ?</div>
+      <!-- <div class="forgetPass" (click)="forgetPass()">Forget Password ?</div> -->
     </div>
 
   </form>

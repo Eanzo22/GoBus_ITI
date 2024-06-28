@@ -41,6 +41,9 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.required,
+          Validators.pattern(
+            '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$'
+          )
         ],
       ],
       rememberMe: [false],
@@ -56,7 +59,10 @@ export class LoginComponent implements OnInit {
       next: (v) => {
         this.response = v as IResponse;
         let userToken = this.response.data.token;
+        if(this.userLoginForm.get('rememberMe')?.value)
         localStorage.setItem('token', userToken);
+        else
+        sessionStorage.setItem('token',userToken)
         this.toaster.success('success', 'Login Success');
         this.router.navigateByUrl(this.returnUrl);
         window.location.replace(this.returnUrl);

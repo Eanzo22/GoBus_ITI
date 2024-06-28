@@ -42,9 +42,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
     this.user = {} as IUser;
     localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
   }
 
   get isUserLogged(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    if(localStorage.getItem('token'))
+      return localStorage.getItem('token') ? true : false;
+    else if(sessionStorage.getItem('token'))
+      return sessionStorage.getItem('token') ? true : false;
+    else
+      return false;
   }
 }

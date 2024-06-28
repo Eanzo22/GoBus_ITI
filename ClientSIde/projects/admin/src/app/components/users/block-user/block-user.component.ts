@@ -3,6 +3,7 @@ import { UserService } from '../../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IResponse } from '../../../models/iresponse';
+import { IUserRead } from '../../../models/user/iuser-read';
 
 @Component({
   selector: 'app-block-user',
@@ -14,7 +15,7 @@ export class BlockUserComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService,
     public dialog: MatDialogRef<BlockUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: IUserRead
   ) {}
   ngOnInit(): void {}
   Block() {
