@@ -112,8 +112,9 @@
           * Phone Number is required.
         </small>
         <small *ngIf="phoneNumber?.errors?.['pattern']">
-          * Please provide a valid Phone Number,
-          <b>{{phoneNumber?.errors?.['pattern'].actualValue}}</b> is not valid.
+          * Please provide a valid Phone Number,It must be
+          <b>At Least 11 numbers</b>.<br>
+          <b>Only numeric values are allowed</b>.
         </small>
       </div>
     </div>

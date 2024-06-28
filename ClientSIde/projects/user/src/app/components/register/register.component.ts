@@ -34,11 +34,11 @@ export class RegisterComponent implements OnInit {
       {
         firstName: [
           '',
-          [Validators.required, Validators.pattern('[A-Za-z]{3,}')],
+          [Validators.required, Validators.pattern('[A-Za-z ]{3,}')],
         ],
         lastName: [
           '',
-          [Validators.required, Validators.pattern('[A-Za-z]{3,}')],
+          [Validators.required, Validators.pattern('[A-Za-z ]{3,}')],
         ],
         userName: [
           '',
@@ -83,7 +83,8 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     let userRegister: IUser = this.userRegisterForm.value;
-
+    userRegister.firstName=userRegister.firstName.trim();
+    userRegister.lastName=userRegister.lastName.trim();
     this.userService.Register(userRegister).subscribe({
       next: (v) => {
         this.response = v as IResponse;
