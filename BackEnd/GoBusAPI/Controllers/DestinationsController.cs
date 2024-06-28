@@ -103,7 +103,7 @@ namespace GoBusAPI.Controllers
             {
                 await file.CopyToAsync(stream);
             }
-            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
+            var imageUrl = "https://gobusiti.runasp.net/Uploades/Images/" + uniqueFileName;
 
 
             // creat the destination object 
@@ -155,7 +155,7 @@ namespace GoBusAPI.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                newImageUrl = "https://localhost:7066/Images/" + uniqueFileName;
+                newImageUrl = "https://gobusiti.runasp.net/Uploades/Images/" + uniqueFileName;
             }
             else
             {

@@ -111,7 +111,7 @@ public class BusClassesController : ControllerBase
         {
             await file.CopyToAsync(stream);
         }
-        var imageUrl = "https://localhost:44331/Images/" + uniqueFileName;
+        var imageUrl = "https://gobusiti.runasp.net/Uploades/Images/" + uniqueFileName;
 
         var busClassAddDto = new BusClassAddDto
         {
@@ -164,7 +164,7 @@ public class BusClassesController : ControllerBase
             await file.CopyToAsync(stream);
         }
 
-        var newImageUrl = "https://localhost:44331/Images/" + uniqueFileName;
+        var newImageUrl = "https://gobusiti.runasp.net/Uploades/Images/" + uniqueFileName;
 
         var busClassUpdateDto = new BusClassUpdateDto
         {

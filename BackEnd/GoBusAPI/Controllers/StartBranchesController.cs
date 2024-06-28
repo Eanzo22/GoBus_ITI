@@ -24,7 +24,7 @@ namespace GoBusAPI.Controllers
 
         #region AddAsync
         [HttpPost]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> AddAsync(StartBranchAddDto startBranchAddDto)
         {
             if (ModelState.IsValid)

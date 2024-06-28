@@ -23,7 +23,7 @@ namespace GoBusAPI.Controllers
 
         #region AddAsync
         [HttpPost]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> AddAsync(EndBranchAddDto endBranchAddDto)
         {
             if (ModelState.IsValid)
@@ -42,7 +42,7 @@ namespace GoBusAPI.Controllers
 
         #region UpdateAsync
         [HttpPut("{id:int}")]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> UpdateAsync(int id, EndBranchAddDto endBranchUpdateDto)
         {
             if (ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace GoBusAPI.Controllers
 
         #region DeleteAsync
         [HttpDelete("{id:int}")]
-        //[Authorize(Policy = "ForAdmin")]
+        [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             Response response = await _endBranchManager.DeleteAsync(id);

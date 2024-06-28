@@ -60,7 +60,7 @@ namespace GoBusAPI.Controllers
             {
                 await file.CopyToAsync(stream);
             }
-            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
+            var imageUrl = "https://gobusiti.runasp.net/Uploades/Images/" + uniqueFileName;
 
             var publicActivityAddDto = new PublicActivityAddDto
             {
@@ -122,7 +122,7 @@ namespace GoBusAPI.Controllers
                 await file.CopyToAsync(stream);
             }
 
-            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
+            var imageUrl = "https://gobusiti.runasp.net/Uploades/Images/" + uniqueFileName;
 
             var publicActivityUpdateDto = new PublicActivityAddDto
             {

@@ -33,6 +33,7 @@ using BL.Managers.TicketManagers;
 using Hangfire;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
 
 namespace GoBusAPI;
 
@@ -175,7 +176,13 @@ public class Program
         app.UseHangfireDashboard();
         app.UseHttpsRedirection();
         app.UseCors("AllowAllDomains");
-        app.UseStaticFiles();
+        //app.UseStaticFiles();
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(builder.Environment.WebRootPath),
+            RequestPath = "/Uploades"
+        });
+
         app.UseAuthentication();
         app.UseAuthorization();
 
