@@ -15,6 +15,7 @@ using DAL.Repos.TicketRepo;
 using DAL.Repos.BusClassRepo;
 using DAL.Repos.BusRepo;
 using DAL.Repos.ClassImageRepo;
+using DAL.Repos.ReportRepo;
 
 namespace DAL.UnitOfWork;
 
@@ -37,7 +38,7 @@ public interface IUnitOfWork
     public IBusRepo BusRepo { get; }
     public IClassImageRepo ClassImageRepo { get; }
 
-
+    public IReportRepo ReportRepo { get; }
     Task<int> SaveChangesAsync();
     Response Response(bool success, object? data, object? messages);
 

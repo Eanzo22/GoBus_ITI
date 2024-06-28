@@ -16,11 +16,14 @@ using DAL.Repos.TicketRepo;
 using DAL.Repos.BusClassRepo;
 using DAL.Repos.BusRepo;
 using DAL.Repos.ClassImageRepo;
+using DAL.Repos.ReportRepo;
 
 namespace DAL.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {
+     public IReportRepo ReportRepo { get; }
+
     public IDestinationRepo DestinationRepo { get; }
     public IEndBranchRepo EndBranchRepo { get; }
     public IStartBranchRepo StartBranchRepo { get; }
@@ -56,7 +59,8 @@ public class UnitOfWork : IUnitOfWork
         ITicketRepo ticketRepo,
         IBusClassRepo busClassRepo,
         IBusRepo busRepo,
-        IClassImageRepo classImageRepo)
+        IClassImageRepo classImageRepo,
+        IReportRepo reportRepo)
     {
         AppDbContext = appDbContext;
         StartBranchRepo = startBranchRepo;
@@ -75,6 +79,7 @@ public class UnitOfWork : IUnitOfWork
         BusClassRepo = busClassRepo;
         BusRepo = busRepo;
         ClassImageRepo = classImageRepo;
+        this.ReportRepo = reportRepo;
     }
     public Response Response(bool success, object? data, object? messages)
     {

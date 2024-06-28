@@ -22,6 +22,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
     public DbSet<Ticket> Tickets => Set<Ticket>();
     public DbSet<Policy> Policies => Set<Policy>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
+    public DbSet<Report> Reports => Set<Report>();
 
     public AppDbContext()
     {

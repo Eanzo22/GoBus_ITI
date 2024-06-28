@@ -1,5 +1,9 @@
 <div class="main p-4">
   <footer class="tw-p-6">
+    <div mat-dialog-content >
+      <p *ngIf="!data.blocked">Are you sure you want to block user <b>{{ data.userName }}</b> ?</p>
+      <p *ngIf="data.blocked">Are you sure you want to unblock user <b>{{ data.userName }}</b> ?</p>
+    </div>
     <div class="d-flex justify-content-center align-items-center">
       <div mat-flat-button class="btn btn-success py-1 px-5 mx-2">
         <button (click)="Block()">Confirm</button>

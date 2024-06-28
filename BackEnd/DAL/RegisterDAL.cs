@@ -9,6 +9,7 @@ using DAL.Repos.DestinationRepo;
 using DAL.Repos.EndBranchRepo;
 using DAL.Repos.PolicyRepo;
 using DAL.Repos.PublicActivityRepos;
+using DAL.Repos.ReportRepo;
 using DAL.Repos.ReservationRepo;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TermRepo;
@@ -39,6 +40,7 @@ namespace DAL
             service.AddScoped<IClassImageRepo, ClassImageRepo>();
             service.AddScoped<ITermRepo, TermRepo>();
             service.AddScoped<ITicketRepo, TicketRepo>();
+            service.AddScoped<IReportRepo, ReportRepo>();
 
         }
     }
