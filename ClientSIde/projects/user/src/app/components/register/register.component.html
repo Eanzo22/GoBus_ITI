@@ -112,8 +112,9 @@
           * Phone Number is required.
         </small>
         <small *ngIf="phoneNumber?.errors?.['pattern']">
-          * Please provide a valid Phone Number,
-          <b>{{phoneNumber?.errors?.['pattern'].actualValue}}</b> is not valid.
+          * Please provide a valid Phone Number,It must be
+          <b>At Least 11 numbers</b>.<br>
+          <b>Only numeric values are allowed</b>.
         </small>
       </div>
     </div>
@@ -126,10 +127,10 @@
         class="form-control"
         id="password"
         name="password"
-        [class.is-invalid]="password?.invalid && password?.touched"
-        [class.is-valid]="password?.valid && password?.touched"
+        [class.is-invalid]="password.invalid && password.touched"
+        [class.is-valid]="password.valid && password.touched"
       />
-      <div [hidden]="password?.valid || password?.untouched">
+      <div [hidden]="password.valid || password.untouched">
         <small *ngIf="password?.errors?.['required']">
           * Password is required.
         </small>
@@ -137,7 +138,7 @@
           * Please provide a valid Password.
         </small>
         <app-password-requirements  *ngIf="password?.errors?.['pattern']" [passwordControl]="password"></app-password-requirements>
-      
+
       </div>
     </div>
 
