@@ -74,7 +74,7 @@ namespace GoBusAPI.Controllers
 
         // admin 
 
-        #region AddAsync
+            #region AddAsync
         [HttpPost]
         [Authorize(Policy = "ForAdmin")]
         public async Task<IActionResult> AddAsync([FromForm] IFormFile file, [FromForm] string name)
@@ -103,7 +103,7 @@ namespace GoBusAPI.Controllers
             {
                 await file.CopyToAsync(stream);
             }
-            var imageUrl = "https://localhost:7066/Images/" + uniqueFileName;
+            var imageUrl = "https://site6032.siteasp.net/wwwroot/wwwroot/Images/" + uniqueFileName;
 
 
             // creat the destination object 
@@ -155,7 +155,7 @@ namespace GoBusAPI.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                newImageUrl = "https://localhost:7066/Images/" + uniqueFileName;
+                newImageUrl = "https://site6032.siteasp.net/wwwroot/wwwroot/Images/" + uniqueFileName;
             }
             else
             {

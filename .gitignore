@@ -361,5 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-ClientSIde/projects/admin/src/app/environments/environment.ts
-ClientSIde/projects/user/src/app/environments/environment.ts
+ClientSide/projects/admin/src/app/environments/environment.ts
+ClientSide/projects/user/src/app/environments/environment.ts
+ClientSide/projects/user/src/app/components/reservation/reservation.component.scss
