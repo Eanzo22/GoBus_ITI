@@ -4,17 +4,21 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+
     h3 {
       color: var(--color-main);
       margin: 0;
     }
-    .filter{
+
+    .filter {
       display: flex;
       gap: 10px;
-      h4{
+
+      h4 {
         margin: 0;
       }
     }
+
     .add {
       background-color: var(--color-green);
       color: white;
@@ -23,6 +27,7 @@
       border-radius: 5px;
       padding: 5px 10px;
       transition: var(--transition-main);
+
       &:hover {
         background-color: white;
         color: var(--color-green);
@@ -30,19 +35,38 @@
       }
     }
   }
-  .tableContainer{
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px auto; /* Adjust as needed */
+    max-width: 400px; /* Adjust as needed */
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f8f9fa; /* Light background color */
+  }
+
+  .tableContainer {
     overflow-x: auto;
   }
+
   table {
     background-color: white;
     width: 100%;
+
     thead {
+      background-color: var(--color-main);
+
       @media (max-width: 576px) {
         font-size: 12px;
       }
-      background-color: var(--color-main);
+
       tr {
         border-bottom: 1px solid #dee2e6;
+
         th {
           color: white;
           padding: 10px;
@@ -50,6 +74,7 @@
         }
       }
     }
+
     tbody {
       tr {
         border-bottom: 1px solid #dee2e6;
@@ -57,14 +82,17 @@
         @media (max-width: 576px) {
           font-size: 12px;
         }
+
         td {
           padding: 10px;
           text-align: center;
+
           &:last-child {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
+
             button {
               color: white;
               border: 2px solid white;
@@ -73,26 +101,33 @@
               padding: 5px 10px;
               outline: none;
               transition: var(--transition-main);
+
               &:hover {
                 background-color: white;
               }
             }
+
             .details {
               background-color: var(--color-main);
+
               &:hover {
                 color: var(--color-main);
                 border: 2px solid var(--color-main);
               }
             }
+
             .update {
               background-color: var(--color-orange);
+
               &:hover {
                 color: var(--color-orange);
                 border: 2px solid var(--color-orange);
               }
             }
+
             .delete {
               background-color: var(--color-red);
+
               &:hover {
                 color: var(--color-red);
                 border: 2px solid var(--color-red);
@@ -103,4 +138,40 @@
       }
     }
   }
+
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .ngx-pagination {
+      display: flex;
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 0 5px;
+
+        a,
+        span {
+          display: block;
+          padding: 10px 15px;
+          text-decoration: none;
+          border-radius: 5px;
+          transition: background-color 0.3s, color 0.3s;
+
+          &.current {
+            background-color: var(--color-main); // Current page background color
+            color: white;
+          }
+
+          &:hover {
+            background-color: var(--color-main); // Hover background color
+            color: white;
+          }
+        }
+      }
+    }
+  }
 }
+

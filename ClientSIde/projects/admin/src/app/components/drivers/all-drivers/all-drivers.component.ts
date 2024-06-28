@@ -14,7 +14,9 @@ import { AddDriverComponent } from '../add-driver/add-driver.component';
 })
 export class AllDriversComponent implements OnInit {
   drivers: IUserRead[] = [];
-
+  p: number = 1;
+  itemsPerPage: number = 8;
+  totalDrivers: any;
   constructor(private driverService: DriverService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class AllDriversComponent implements OnInit {
       next: (v) => {
         let response = v as IResponse;
         this.drivers = response.data;
+        this.totalDrivers = response.data.length
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),

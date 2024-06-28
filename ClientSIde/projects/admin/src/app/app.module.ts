@@ -6,7 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -157,6 +160,7 @@ import { MatList, MatListModule } from '@angular/material/list';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     MatListModule,
     AppRoutingModule,
     HttpClientModule,
