@@ -13,6 +13,6 @@ namespace DAL.Data.Models
         public string MessageTitle { get; set; } = string.Empty;
         public string MessageContent { get; set; } = string.Empty;
         public string UserId { get; set; } = string.Empty;
-       // public ApplicationUser User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
     }
 }

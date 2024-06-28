@@ -16,6 +16,7 @@ using BL.Managers.PolicyManagers;
 using BL.Managers.ReservationManagers;
 using BL.Managers.TermManagers;
 using BL.Managers.TicketManagers;
+using BL.Managers.ReportManagers;
 
 
 namespace BL;
@@ -41,6 +42,7 @@ public static class RegisterBL
         service.AddScoped<IClassImageManager, ClassImageManager>();
         service.AddScoped<ITermManager, TermManager>();
         service.AddScoped<ITicketManager, TicketManager>();
+        service.AddScoped<IReportManager, ReportManager>();
 
     }
 }
