@@ -1,3 +1,3 @@
 export const environment = {
-  Api: 'http://gobusiti.runasp.net/api',
+  Api: 'https://gobusiti.runasp.net/api',
 };
