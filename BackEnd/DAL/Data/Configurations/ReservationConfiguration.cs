@@ -41,7 +41,7 @@ public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
         builder.HasOne(x => x.Trip)
             .WithMany(x => x.Reservations)
             .HasForeignKey(x => x.TripId)
-            .OnDelete(DeleteBehavior.SetNull)
+            .OnDelete(DeleteBehavior.NoAction)
             .IsRequired();
 
         builder.ToTable("Reservations");

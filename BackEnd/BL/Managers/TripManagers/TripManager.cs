@@ -257,7 +257,7 @@ public class TripManager : ITripManager
     {
         Trip? trip = await _unitOfWork.TripRepo.GetByIdWithReservationsAsync(id);
 
-        if (trip is not null && trip.Reservations is null)
+        if (trip is not null && trip.Reservations.Count() <= 0 )
         {
             
             _unitOfWork.TripRepo.Delete(trip);
