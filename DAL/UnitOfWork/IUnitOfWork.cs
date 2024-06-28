@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Repos.PublicActivityRepos;
 using DAL.Repos;
+using DAL.Repos.ReportRepo;
+using DAL.Repos.ClassImageRepo;
+using DAL.Repos.BusClassRepo;
+using DAL.RepoS;
 
 
 namespace DAL.UnitOfWork
@@ -26,6 +30,13 @@ namespace DAL.UnitOfWork
         public IStartBranchRepo StartBranchRepo { get; }
        
         public ITripRepo TripRepo { get; }
+
+        public IReportRepo ReportRepo { get; }
+
+        public IClassImageRepo ClassImageRepo { get; }
+
+        public IBusClassRepo BusClassRepo { get; }
+        public IBusRepo BusRepo { get; }
         Task<int> SaveChangesAsync();
         Response Response(bool success, object? data, object? messages);
 

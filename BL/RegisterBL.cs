@@ -1,21 +1,13 @@
-﻿using DAL.Repos.DestinationRepo;
-using DAL.Repos.EndBranchRepo;
-using DAL.Repos.PublicActivityRepos;
-using DAL.Repos.StartBranchRepo;
-using DAL.Repos.TripRepo;
-using DAL.Repos;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
 using BL.Managers.DestinationManagers;
 using BL.Managers.EndBranchManagers;
 using BL.Managers.TripManagers;
 using BL.Managers.StartBranchManagers;
 using BL.Managers.PublicActivityManagers;
 using BL.Managers.QuestionManager;
+using BL.Managers.ReportManager;
+using BL.Managers.ClassImageManger;
+using BL.Managers.BusManager;
 
 
 namespace BL
@@ -30,6 +22,9 @@ namespace BL
             service.AddScoped<ITripManager, TripManager>();
             service.AddScoped<IPublicActivityManager, PublicActivityManager>();
             service.AddScoped<IQuestionManager, QuestionManager>();
+            service.AddScoped<IReportManager, ReportManager>();
+            service.AddScoped<IClassImageManager, ClassImageManager>();
+            service.AddScoped<IBusManager, BusManager>();
 
         }
     }

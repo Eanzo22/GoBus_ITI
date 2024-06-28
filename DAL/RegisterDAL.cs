@@ -1,9 +1,14 @@
 ﻿using DAL.Repos;
+using DAL.Repos.BusClassRepo;
+using DAL.Repos.BusRepo;
+using DAL.Repos.ClassImageRepo;
 using DAL.Repos.DestinationRepo;
 using DAL.Repos.EndBranchRepo;
 using DAL.Repos.PublicActivityRepos;
+using DAL.Repos.ReportRepo;
 using DAL.Repos.StartBranchRepo;
 using DAL.Repos.TripRepo;
+using DAL.RepoS;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DAL
@@ -19,7 +24,11 @@ namespace DAL
             service.AddScoped<ITripRepo, TripRepo>();
             service.AddScoped<IPublicActivityRepo, PublicActivityRepo>();
             service.AddScoped<IQuestionRepo, QuestionRepo>();
- 
+            service.AddScoped<IReportRepo, ReportRepo>();
+            service.AddScoped<IClassImageRepo, ClassImageRepo>();
+            service.AddScoped<IBusClassRepo, BusClassRepo>();
+            service.AddScoped<IBusRepo, BusRepo>();
+
         }
     }
 }

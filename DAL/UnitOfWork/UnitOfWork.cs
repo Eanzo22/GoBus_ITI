@@ -11,6 +11,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Repos.ReportRepo;
+using DAL.Repos.ClassImageRepo;
+using DAL.Repos.BusClassRepo;
+using DAL.RepoS;
 
 namespace DAL.UnitOfWork
 {
@@ -27,6 +31,14 @@ namespace DAL.UnitOfWork
 
         public ITripRepo TripRepo { get; }
 
+        public IReportRepo ReportRepo {get; }
+
+        public IBusClassRepo BusClassRepo { get; }
+
+        public IClassImageRepo ClassImageRepo { get; }
+
+        public IBusRepo BusRepo { get; }
+
         public AppDbContext AppDbContext { get; }
 
         public UnitOfWork(AppDbContext appDbContext,          
@@ -35,7 +47,11 @@ namespace DAL.UnitOfWork
             IPublicActivityRepo publicActivityRepo,
             IQuestionRepo questionRepo,      
             IStartBranchRepo startBranchRepo,     
-            ITripRepo tripRepo)
+            ITripRepo tripRepo,
+            IReportRepo reportRepo,
+            IClassImageRepo classImageRepo,
+            IBusClassRepo busClassRepo,
+            IBusRepo busRepo)
         {
             AppDbContext = appDbContext;          
             DestinationRepo = destinationRepo;
@@ -44,6 +60,9 @@ namespace DAL.UnitOfWork
             QuestionRepo = questionRepo; 
             StartBranchRepo = startBranchRepo;           
             TripRepo = tripRepo;
+            ReportRepo = reportRepo;
+            ClassImageRepo = classImageRepo;
+            busRepo = busRepo;
         }
         public Response Response(bool success, object? data, object? messages)
         {

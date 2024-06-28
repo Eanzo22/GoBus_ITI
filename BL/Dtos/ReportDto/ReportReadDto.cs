@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Data.Models
+namespace BL.Dtos.ReportDto
 {
-    public class Report
+    public class ReportReadDto
     {
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
@@ -15,6 +15,5 @@ namespace DAL.Data.Models
         public int ReservationNumber { get; set; }
         public string MessageTitle { get; set; } = string.Empty;
         public string MessageContent { get; set; } = string.Empty;
-        
     }
 }
